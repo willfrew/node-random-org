@@ -1,0 +1,36 @@
+{
+  "name": "random-org",
+  "version": "0.0.1",
+  "description": "Random.org api wrapper for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willfrew/node-random-org.git"
+  },
+  "keywords": [
+    "random",
+    "org",
+    "random.org",
+    "generate",
+    "truly",
+    "numbers"
+  ],
+  "author": "Will Frew",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willfrew/node-random-org/issues"
+  },
+  "homepage": "https://github.com/willfrew/node-random-org#readme",
+  "dependencies": {
+    "bluebird": "^3.0.5"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "nock": "^3.1.1",
+    "sinon": "^1.17.2"
+  }
+}
