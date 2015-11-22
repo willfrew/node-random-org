@@ -1,7 +1,7 @@
 # `random-org`
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
-[Random.org](https://www.random.org) is a random number generation as a service
+[Random.org](https://www.random.org) is a random number generation as-a-service
 provider.
 According to their homepage, they're using 'atmospheric fluctuations' to generate
 said random bits.
@@ -21,7 +21,7 @@ See the following high-level example for getting started:
 var RandomOrg = require('random-org');
 
 var random = new RandomOrg({ apiKey: '12345-67890-api-key' });
-random.generateIntegers({ min: 1, max: 99, n: 2, replacement: false })
+random.generateIntegers({ min: 1, max: 99, n: 2 })
 .then(function(result) {
   console.log(result.random.data); // [55, 3]
 });
@@ -48,7 +48,7 @@ params = {
   replacement: Boolean,
     // Whether or not the generated numbers can contain duplicates (default: true).
   base: Number
-    // The base of the generated numbers (default: 10, valid values: 2, 8, 10 or 16).
+    // The base of the generated numbers (default: 10; valid values: 2, 8, 10 or 16).
     // If `base` is any value other than 10, the generated numbers will be returned as strings.
 }
  ```
@@ -80,13 +80,11 @@ params = {
   n: Number,
     // The number of random numbers to generate (valid values: [1-10000]).
   mean: Number,
-    // The mean of the distribution to pull numbers from (valid values:
-    // [-1e6 - 1e6]).
+    // The mean of the distribution to pull numbers from (valid values: [-1e6 - 1e6]).
   standardDeviation: Number,
     // Said distribution's standard deviation (valid values [-1e6 - 1e6]).
   significantDigits: Number,
-    // The number of significant digits for your requested random numbers (valid
-    // values: [2-20]).
+    // The number of significant digits for your requested random numbers (valid values: [2-20]).
 }
 ```
 
@@ -100,10 +98,8 @@ params = {
   length: Number,
     // The length of each string you'd like generated.
   characters: String,
-    // The set of characters allowed to appear in the generated strings (maximum
-    // length: 80).
-    // Note: As far as I can tell, Unicode characters are unsupported and result
-    // in a Parse Error.
+    // The set of characters allowed to appear in the generated strings (maximum length: 80).
+    // Note: As far as I can tell, Unicode characters are unsupported and result in a Parse Error.
 
   /* Optional */
   replacement: Boolean
@@ -123,7 +119,7 @@ Although each UUID is drawn from a 128bit space, collisions are still possible
 params = {
   /* Required */
   n: Number
-    // The number of random numbers to generate (valid values: [1-1000]).
+    // The number of UUIDs to generate (valid values: [1-1000]).
 }
 ```
 
@@ -139,13 +135,11 @@ params = {
   n: Number,
     // The number of blobs you'd like (valid values: [1-100]).
   size: Number,
-    // The size of each blob, in bits (valid values: [1-1048576]
-    // and `size % 8 === 0`).
+    // The size of each blob, in bits (valid values: [1-1048576] and `size % 8 === 0`).
 
   /* Optional */
   format: String
-    // The format in which you'd like your blob (default: 'base64',
-    // valid values: 'base64' or 'hex').
+    // The format in which you'd like your blob (default: 'base64'; valid values: 'base64' or 'hex').
 }
 ```
 
@@ -161,8 +155,7 @@ response = {
     data: Array,
       // Array containing your requested random numbers or strings.
     completionTime: String
-      // The time that request was completed, in ISO 8601 format (parsable with
-      // new Date(isoString)).
+      // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
   },
   bitsUsed: Number,
     // The number of random bits generated in this request.
@@ -197,8 +190,7 @@ response = {
   requestsLeft: Number,
     // An estimate of the number of remaining api calls you can make.
   advisoryDelay: Number
-    // The recommended number of milliseconds you should wait before making
-    // another request.
+    // The recommended number of milliseconds you should wait before making another request.
 }
 ```
 
