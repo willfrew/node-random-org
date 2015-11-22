@@ -178,6 +178,7 @@ the exact same parameters:
  - `generateStrings` → `generateSignedStrings`
  - `generateUUIDs` → `generateSignedUUIDs`
  - `generateBlobs` → `generateSignedBlobs`
+
 The only difference between the basic and the signed methods is their
 [response](#signed-method-response-format).
 
