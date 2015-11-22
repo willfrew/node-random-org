@@ -48,13 +48,28 @@ describe('RandomOrg', function() {
     });
   });
 
+  it('should provide methods for all the signed api methods', function() {
+    [
+      'generateSignedIntegers',
+      'generateSignedDecimalFractions',
+      'generateSignedGaussians',
+      'generateSignedStrings',
+      'generateSignedUUIDs',
+      'generateSignedBlobs',
+      'verifySignature'
+    ].forEach(function(basicMethod) {
+      expect(random[basicMethod]).to.be.a('function');
+    });
+
+  });
+
   it('should call makeRpcRequest with the correct method name', function() {
-    sinon.stub(random, '__makeRpcRequest', function () {
+    sinon.stub(random, '_makeRpcRequest', function () {
       return Promise.resolve({ result: { random: { data: 1 } } });
     });
 
     random.getUsage();
-    expect(random.__makeRpcRequest.args[0][0].method).to.equal('getUsage');
+    expect(random._makeRpcRequest.args[0][0].method).to.equal('getUsage');
   });
 
   it('should add apiKey to the passed in parameters', function() {
@@ -67,7 +82,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-    sinon.stub(random, '__makeRpcRequest', function () {
+    sinon.stub(random, '_makeRpcRequest', function () {
       return Promise.resolve(response);
     });
 
@@ -76,7 +91,7 @@ describe('RandomOrg', function() {
       max: 15,
       n: 1
     });
-    expect(random.__makeRpcRequest.args[0][0].params).to.deep.equal({
+    expect(random._makeRpcRequest.args[0][0].params).to.deep.equal({
       min: 0,
       max: 15,
       n: 1,
@@ -94,7 +109,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     }
-    sinon.stub(random, '__makeRpcRequest', function () {
+    sinon.stub(random, '_makeRpcRequest', function () {
       return Promise.resolve(response);
     });
 
@@ -125,7 +140,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-    sinon.stub(random, '__makeRpcRequest', function () {
+    sinon.stub(random, '_makeRpcRequest', function () {
       return Promise.resolve(response);
     });
 

@@ -168,9 +168,67 @@ response = {
 ```
 
 ### Signed api methods
-Random.org provides signed random numbers so that their authenticity can be
-verified against their public key.
-> The signed api methods are so-far unsupported by `random-org`.
+Random.org also provides methods for generating signed random numbers so that
+their authenticity can be verified against the random.org public key.
+
+All of the basic 'generation' api methods have a signed counterpart that take
+the exact same parameters:
+ - `generateIntegers` → `generateSignedIntegers`
+ - `generateDecimalFractions` → `generateSignedDecimalFractions`
+ - `generateGaussians` → `generateSignedGaussians`
+ - `generateStrings` → `generateSignedStrings`
+ - `generateUUIDs` → `generateSignedUUIDs`
+ - `generateBlobs` → `generateSignedBlobs`
+The only difference between the basic and the signed methods is their
+[response](#signed-method-response-format).
+
+#### `random.verifySignature(params : Object) : Promise`
+In addition to the number generation methods, Random.org also provide a
+convenience method api for verifying previously issued signed random numbers.
+
+```javascript
+params = {
+  /* Required */
+  random: Object,
+    // The original `response.random` object, received from one of the signed api calls.
+  signature: String
+    // The corresponding `response.signature` string from the same request.
+}
+```
+
+#### Signed method response format
+```javascript
+response = {
+  random: {
+    method: String,
+      // The name of the method you called.
+    hashedApiKey: String,
+      // A base64-encoded SHA-512 hash of your api key.
+      // This allows you to provide this response to a third party without having to disclose your api key.
+    /*
+      The parameters of your request will also be included here in the response.
+      E.g. for `generateSignedStrings`, you would receive:
+      n, length, characters & replacement
+     */
+    data: Array,
+      // Array containing your requested random numbers or strings.
+    completionTime: String,
+      // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
+    serialNumber: Number
+      // The serial number of this response (unique to your api key's requests).
+  },
+  signature: String,
+    // A base64-encoded signature of `response.random`, signed with Random.org's private key.
+  bitsUsed: Number,
+    // The number of random bits generated in this request.
+  bitsLeft: Number,
+    // An estimate of the number of remaining bits you can request.
+  requestsLeft: Number,
+    // An estimate of the number of remaining api calls you can make.
+  advisoryDelay: Number
+    // The recommended number of milliseconds you should wait before making another request.
+}
+```
 
 ### Account information
 #### `random.getUsage() : Promise`

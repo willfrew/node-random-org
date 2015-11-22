@@ -12,17 +12,26 @@ function RandomOrg(opts) {
   this.endpoint = url.parse(this.endpoint);
 
   // For testing.
-  this.__makeRpcRequest = makeRpcRequest;
+  this._makeRpcRequest = makeRpcRequest;
 }
 
 [
+  // Basic api methods
   'generateIntegers',
   'generateDecimalFractions',
   'generateGaussians',
   'generateStrings',
   'generateUUIDs',
   'generateBlobs',
-  'getUsage'
+  'getUsage',
+  // Signed api methods
+  'generateSignedIntegers',
+  'generateSignedDecimalFractions',
+  'generateSignedGaussians',
+  'generateSignedStrings',
+  'generateSignedUUIDs',
+  'generateSignedBlobs',
+  'verifySignature'
 ].forEach(function(methodName) {
   RandomOrg.prototype[methodName] = createInvocation(methodName);
 });
@@ -42,7 +51,7 @@ function createInvocation(methodName) {
       method: methodName,
       params: this._enrichParams(params)
     }
-    return this.__makeRpcRequest(requestOpts)
+    return this._makeRpcRequest(requestOpts)
     .then(function (response) {
       if (response.error) {
         var error = new Error(response.error.message);
