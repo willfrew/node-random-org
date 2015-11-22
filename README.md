@@ -29,7 +29,7 @@ random.generateIntegers({ min: 1, max: 99, n: 2 })
 
 ### Basic api methods
 The so-called 'basic' api methods are the ones to use if all you need is a few bits, of the random variety.
-All of these api calls have a similarly formatted response (documented [here](#basic-method-response-format).
+All of these api calls have a similarly formatted response (documented [here](#basic-method-response-format)).
 
 #### `random.generateIntegers(params : Object) : Promise`
 Generate some truly random integers.
