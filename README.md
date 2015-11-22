@@ -1,4 +1,4 @@
-# `random-org`
+# `random-org` [![Build Status](https://travis-ci.org/willfrew/node-random-org.svg?branch=master)](https://travis-ci.org/willfrew/node-random-org)
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
 [Random.org](https://www.random.org) is a random number generation as-a-service
@@ -29,11 +29,11 @@ random.generateIntegers({ min: 1, max: 99, n: 2 })
 
 ### Basic api methods
 The so-called 'basic' api methods are the ones to use if all you need is a few bits, of the random variety.
-All of these api calls have a similarly formatted response (documented [here](#basic-response)).
+All of these api calls have a similarly formatted response (documented [here](#basic-method-response-format).
 
 #### `random.generateIntegers(params : Object) : Promise`
 Generate some truly random integers.
-[_Response_](#basic-response)
+[_Response_](#basic-method-response-format)
 ```javascript
 params = {
   /* Required */
@@ -54,7 +54,7 @@ params = {
  ```
 
 #### `random.generateDecimalFractions(params : Object) : Promise`
-Generate some random real numbers between 0 and 1. [_Response_](#basic-response)
+Generate some random real numbers between 0 and 1. [_Response_](#basic-method-response-format)
 ```javascript
 params = {
   /* Required */
@@ -69,7 +69,7 @@ params = {
 }
 ```
 #### `random.generateGaussians(params : Object) : Promise`
-Generate random numbers from a Gaussian distribution. [_Response_](#basic-response)
+Generate random numbers from a Gaussian distribution. [_Response_](#basic-method-response-format)
 
 There is no `replacement` option for this api call, meaning the response can
 contain duplicates.
@@ -89,7 +89,7 @@ params = {
 ```
 
 #### `random.generateStrings(params : Object) : Promise`
-Generate random strings of a given length, using a provided set of characters. [_Response_](#basic-response)
+Generate random strings of a given length, using a provided set of characters. [_Response_](#basic-method-response-format)
 ```javascript
 params = {
   /* Required */
@@ -108,7 +108,7 @@ params = {
 ```
 
 #### `random.generateUUIDs(params : Object) : Promise`
-Generate [version 4 Universally Unique IDentifiers](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29). [_Response_](#basic-response)
+Generate [version 4 Universally Unique IDentifiers](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29). [_Response_](#basic-method-response-format)
 
 As with numbers pulled from a Gaussian distribution, this api call does not have
 a `replacement` property.
@@ -124,7 +124,7 @@ params = {
 ```
 
 #### `random.generateBlobs(params : Object) : Promise`
-Generate random binary blobs.
+Generate random binary blobs. [_Response_](#basic-method-response-format)
 
 The total size of all blobs requested mustn't exceed 128KB (1,048,576
 bits).
@@ -143,7 +143,6 @@ params = {
 }
 ```
 
-<a class="anchor" id="basic-response"></a>
 #### Basic method response format
 The basic api methods for generating random bits all have a consistent response
 format:
