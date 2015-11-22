@@ -1,8 +1,7 @@
 # `random-org` [![Build Status](https://travis-ci.org/willfrew/node-random-org.svg?branch=master)](https://travis-ci.org/willfrew/node-random-org)
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
-[Random.org](https://www.random.org) is a random number generation as-a-service
-provider.
+[Random.org](https://www.random.org) is a truly random number generation service.
 According to their homepage, they're using 'atmospheric fluctuations' to generate
 said random bits.
 The aim of this module is to provide a slightly more node-centric interface to
