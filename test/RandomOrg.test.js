@@ -6,6 +6,13 @@ var RandomOrg = require('../src/RandomOrg');
 
 describe('RandomOrg', function() {
 
+  var apiKey = '123456exampleAp1K3y';
+  var random;
+
+  beforeEach(function() {
+    random = new RandomOrg({ apiKey: apiKey });
+  });
+
   it('should be a Function', function() {
     expect(RandomOrg).to.be.a('function');
   });
@@ -28,7 +35,6 @@ describe('RandomOrg', function() {
   });
 
   it('should provide methods for all the basic api methods', function() {
-    var random = new RandomOrg({ apiKey: '123' });
     [
       'generateIntegers',
       'generateDecimalFractions',
@@ -43,8 +49,6 @@ describe('RandomOrg', function() {
   });
 
   it('should call makeRpcRequest with the correct method name', function() {
-    var apiKey = '123456exampleAp1K3y';
-    var random = new RandomOrg({ apiKey: apiKey });
     sinon.stub(random, '__makeRpcRequest', function () {
       return Promise.resolve({ result: { random: { data: 1 } } });
     });
@@ -54,7 +58,6 @@ describe('RandomOrg', function() {
   });
 
   it('should add apiKey to the passed in parameters', function() {
-    var apiKey = '123456exampleAp1K3y';
     var response = {
       jsonrpc: '2.0',
       result:{
@@ -64,8 +67,6 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-
-    var random = new RandomOrg({ apiKey: apiKey });
     sinon.stub(random, '__makeRpcRequest', function () {
       return Promise.resolve(response);
     });
@@ -85,7 +86,6 @@ describe('RandomOrg', function() {
 
   it('should return an error if rpc response has an `error` property',
   function(done) {
-    var apiKey = '123456exampleAp1K3y';
     var response = {
       jsonrpc: '2.0',
       error: {
@@ -94,8 +94,6 @@ describe('RandomOrg', function() {
       },
       id: 1
     }
-
-    var random = new RandomOrg({ apiKey: apiKey });
     sinon.stub(random, '__makeRpcRequest', function () {
       return Promise.resolve(response);
     });
@@ -109,6 +107,31 @@ describe('RandomOrg', function() {
       expect(error.message).to.equal(response.error.message);
       expect(error.code).to.equal(response.error.code);
       done();
+    });
+  });
+
+  it('should return `response.result`', function() {
+    var response = {
+      jsonrpc: '2.0',
+      result: {
+        random: {
+          data: [10, 11, 12],
+          completionTime: '01-01-2015 00:13:37Z'
+        },
+        bitsUsed: 1234,
+        bitsLeft: 1234,
+        requestsLeft: 50000,
+        advisoryDelay: 30000
+      },
+      id: 1
+    };
+    sinon.stub(random, '__makeRpcRequest', function () {
+      return Promise.resolve(response);
+    });
+
+    random.generateIntegers({ min: 10, max: 12, n: 3 })
+    .then(function(result) {
+      expect(result).to.deep.equal(response.result);
     });
   });
 

@@ -49,7 +49,7 @@ function createInvocation(methodName) {
         error.code = response.error.code;
         throw error;
       } else {
-        return response.result.random.data;
+        return response.result;
       }
     });
   });
