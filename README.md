@@ -1,7 +1,7 @@
 # `random-org`
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
-[Random.org](https://www.random.org) are a random number generation as a service
+[Random.org](https://www.random.org) is a random number generation as a service
 provider.
 According to their homepage, they're using 'atmospheric fluctuations' to generate
 said random bits.
@@ -33,7 +33,7 @@ All of these api calls have a similarly formatted response (documented [here](#b
 
 #### `random.generateIntegers(params : Object) : Promise`
 Generate some truly random integers.
-[_Response_]((#basic-response)
+[_Response_](#basic-response)
 ```javascript
 params = {
   /* Required */
@@ -54,14 +54,14 @@ params = {
  ```
 
 #### `random.generateDecimalFractions(params : Object) : Promise`
-Generate some random real numbers between 0 and 1. [_Response_]((#basic-response)
+Generate some random real numbers between 0 and 1. [_Response_](#basic-response)
 ```javascript
 params = {
   /* Required */
   n: Number,
     // The number of random reals to generate (valid values: [1-10000]).
   decimalPlaces: Number,
-    // The number of decimal places to use. (valid values: [1-20])
+    // The number of decimal places to use (valid values: [1-20]).
 
   /* Optional */
   replacement: Boolean
@@ -69,7 +69,7 @@ params = {
 }
 ```
 #### `random.generateGaussians(params : Object) : Promise`
-Generate random numbers from a Gaussian distribution. [_Response_]((#basic-response)
+Generate random numbers from a Gaussian distribution. [_Response_](#basic-response)
 
 There is no `replacement` option for this api call, meaning the response can
 contain duplicates.
@@ -91,7 +91,7 @@ params = {
 ```
 
 #### `random.generateStrings(params : Object) : Promise`
-Generate random strings of a given length, using a provided set of characters. [_Response_]((#basic-response)
+Generate random strings of a given length, using a provided set of characters. [_Response_](#basic-response)
 ```javascript
 params = {
   /* Required */
@@ -112,7 +112,7 @@ params = {
 ```
 
 #### `random.generateUUIDs(params : Object) : Promise`
-Generate [version 4 Universally Unique IDentifiers](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29). [_Response_]((#basic-response)
+Generate [version 4 Universally Unique IDentifiers](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29). [_Response_](#basic-response)
 
 As with numbers pulled from a Gaussian distribution, this api call does not have
 a `replacement` property.
@@ -149,8 +149,8 @@ params = {
 }
 ```
 
-#### Basic method response format
 <a class="anchor" id="basic-response"></a>
+#### Basic method response format
 The basic api methods for generating random bits all have a consistent response
 format:
 
