@@ -266,4 +266,4 @@ As such, I can't guarantee the availability or randomness of their service (or
 anything else for that matter!).
 
 ## License
-MIT. Use it, fork it, contribute - I dare ya!
+MIT. Fork it - I dare ya!
