@@ -2,7 +2,7 @@
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
 [Random.org](https://www.random.org) is a truly random number generation service.
-According to their homepage, they're using 'atmospheric fluctuations' to generate
+According to their homepage, they're using 'atmospheric noise' to generate
 said random bits.
 The aim of this module is to provide a slightly more node-centric interface to
 their json-rpc api than existing offerings.
