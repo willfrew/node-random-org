@@ -98,7 +98,7 @@ params = {
     // The length of each string you'd like generated.
   characters: String,
     // The set of characters allowed to appear in the generated strings (maximum length: 80).
-    // Note: As far as I can tell, Unicode characters are unsupported and result in a Parse Error.
+    // Unicode characters are supported.
 
   /* Optional */
   replacement: Boolean

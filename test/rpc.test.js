@@ -26,7 +26,10 @@ describe('makeRpcRequest', function() {
     requestOptions = {
       method: 'exampleMethod',
       endpoint: endpoint,
-      params: { foo: 'bar' }
+      params: {
+        foo: 'bar',
+        some: 'unicode characters: → ⇒ ⇄ ↑ ↩ ↱ ↷ ↻ ► ☛'
+      }
     };
 
     server = nock(endpoint.protocol + '//' + endpoint.hostname)
@@ -72,10 +75,12 @@ describe('makeRpcRequest', function() {
     });
   });
 
-  it('should properly set the Content-Length header', function() {
+  it('should set the Content-Length header to the byte length of the post body',
+  function() {
     return makeRpcRequest(requestOptions)
     .then(function() {
-      expect(request.headers['content-length']).to.equal(requestBody.length);
+      var contentLength = Buffer.byteLength(requestBody, 'utf8');
+      expect(request.headers['content-length']).to.equal(contentLength);
     });
   });
 

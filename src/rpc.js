@@ -30,7 +30,7 @@ var makeRpcRequest = Promise.promisify(function(options, callback) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json-rpc',
-      'Content-Length': postData.length
+      'Content-Length': Buffer.byteLength(postData, 'utf8')
     }
   };
   var req = https.request(requestParams, function(res) {
