@@ -12,6 +12,12 @@ You can request a beta key [here](https://api.random.org/api-keys/beta).
 Please be a nice api consumer and check out their
 [usage guidelines](https://api.random.org/guidelines) before using this module.
 
+## Installation
+Install through npm:
+```shell
+$ npm install random-org
+```
+
 ## Usage
 The `random-org` api is fully Promise-based.
 
