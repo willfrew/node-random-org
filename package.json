@@ -1,6 +1,6 @@
 {
   "name": "random-org",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Truly random numbers via Random.org's json-rpc api",
   "main": "index.js",
   "scripts": {
