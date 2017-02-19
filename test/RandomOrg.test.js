@@ -99,6 +99,23 @@ describe('RandomOrg', function() {
     });
   });
 
+  it('should not include the apiKey in the verifySignature call', function() {
+    var response = {
+      jsonrpc: '2.0',
+      result: {
+        authenticity: true
+      },
+      id: 1
+    };
+    sinon.stub(random, '_makeRpcRequest', function () {
+      return Promise.resolve(response);
+    });
+
+    random.verifySignature({ /* Response from a signed method call */ });
+
+    expect(random._makeRpcRequest.args[0][0].params).to.not.have.property('apiKey');
+  });
+
   it('should return an error if rpc response has an `error` property',
   function(done) {
     var response = {

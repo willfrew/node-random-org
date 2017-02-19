@@ -36,7 +36,13 @@ function RandomOrg(opts) {
   RandomOrg.prototype[methodName] = createInvocation(methodName);
 });
 
-RandomOrg.prototype._enrichParams = function(params) {
+RandomOrg.prototype._enrichParams = function(method, params) {
+  if (method === 'verifySignature') {
+    /* The verifySignature method requires no api key (so that anyone
+     * can verify the authenticity of some response). */
+    return params;
+  }
+
   var requestParams = { apiKey: this.apiKey };
   Object.keys(params || {}).forEach(function(property) {
     requestParams[property] = params[property];
@@ -49,7 +55,7 @@ function createInvocation(methodName) {
     var requestOpts = {
       endpoint: this.endpoint,
       method: methodName,
-      params: this._enrichParams(params)
+      params: this._enrichParams(methodName, params)
     }
     return this._makeRpcRequest(requestOpts)
     .then(function (response) {
