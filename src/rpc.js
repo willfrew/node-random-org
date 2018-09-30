@@ -1,4 +1,3 @@
-var Promise = require('bluebird');
 var https = require('https');
 
 /**
@@ -14,43 +13,45 @@ var https = require('https');
  * @param  {RPCOptions}   options   Request options
  * @return {Promise}                A Promise for the result of the request.
  */
-var makeRpcRequest = Promise.promisify(function(options, callback) {
-  var postData = JSON.stringify({
-    jsonrpc: '2.0',
-    method: options.method,
-    params: options.params,
-    id: options.id || 1
-  });
-  var endpoint = options.endpoint;
-  var requestParams = {
-    protocol: endpoint.protocol,
-    hostname: endpoint.hostname,
-    port: endpoint.port || 443,
-    path: endpoint.path,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json-rpc',
-      'Content-Length': Buffer.byteLength(postData, 'utf8')
-    }
-  };
-  var req = https.request(requestParams, function(res) {
-    res.setEncoding('utf8');
-    var responseBody = '';
-    res.on('data', function (chunk) {
-      responseBody += chunk;
+var makeRpcRequest = function(options) {
+  return new Promise(function(resolve, reject) {
+    var postData = JSON.stringify({
+      jsonrpc: '2.0',
+      method: options.method,
+      params: options.params,
+      id: options.id || 1
     });
-    res.on('end', function() {
-      try {
-        responseBody = JSON.parse(responseBody);
-        callback(null, responseBody);
-      } catch (e) {
-        callback(new Error('Received invalid JSON'));
+    var endpoint = options.endpoint;
+    var requestParams = {
+      protocol: endpoint.protocol,
+      hostname: endpoint.hostname,
+      port: endpoint.port || 443,
+      path: endpoint.path,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json-rpc',
+        'Content-Length': Buffer.byteLength(postData, 'utf8')
       }
+    };
+    var req = https.request(requestParams, function(res) {
+      res.setEncoding('utf8');
+      var responseBody = '';
+      res.on('data', function (chunk) {
+        responseBody += chunk;
+      });
+      res.on('end', function() {
+        try {
+          responseBody = JSON.parse(responseBody);
+          resolve(responseBody);
+        } catch (e) {
+          reject(new Error('Received invalid JSON'));
+        }
+      });
     });
+    req.on('error', reject);
+    req.write(postData);
+    req.end();
   });
-  req.on('error', callback);
-  req.write(postData);
-  req.end();
-});
+}
 
 module.exports.makeRpcRequest = makeRpcRequest;

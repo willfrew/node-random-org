@@ -1,6 +1,5 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var Promise = require('bluebird');
 
 var RandomOrg = require('../src/RandomOrg');
 
@@ -64,9 +63,8 @@ describe('RandomOrg', function() {
   });
 
   it('should call makeRpcRequest with the correct method name', function() {
-    sinon.stub(random, '_makeRpcRequest', function () {
-      return Promise.resolve({ result: { random: { data: 1 } } });
-    });
+    sinon.stub(random, '_makeRpcRequest')
+      .returns(Promise.resolve({ result: { random: { data: 1 } } }));
 
     random.getUsage();
     expect(random._makeRpcRequest.args[0][0].method).to.equal('getUsage');
@@ -82,9 +80,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-    sinon.stub(random, '_makeRpcRequest', function () {
-      return Promise.resolve(response);
-    });
+    sinon.stub(random, '_makeRpcRequest').returns(Promise.resolve(response));
 
     random.generateIntegers({
       min: 0,
@@ -107,9 +103,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-    sinon.stub(random, '_makeRpcRequest', function () {
-      return Promise.resolve(response);
-    });
+    sinon.stub(random, '_makeRpcRequest').returns(Promise.resolve(response));
 
     random.verifySignature({ /* Response from a signed method call */ });
 
@@ -126,9 +120,7 @@ describe('RandomOrg', function() {
       },
       id: 1
     }
-    sinon.stub(random, '_makeRpcRequest', function () {
-      return Promise.resolve(response);
-    });
+    sinon.stub(random, '_makeRpcRequest').returns(Promise.resolve(response));
 
     random.generateIntegers({ min: 1, max: 2, n: 15 })
     .then(function() {
@@ -157,14 +149,12 @@ describe('RandomOrg', function() {
       },
       id: 1
     };
-    sinon.stub(random, '_makeRpcRequest', function () {
-      return Promise.resolve(response);
-    });
+    sinon.stub(random, '_makeRpcRequest').returns(Promise.resolve(response));
 
     random.generateIntegers({ min: 10, max: 12, n: 3 })
-    .then(function(result) {
-      expect(result).to.deep.equal(response.result);
-    });
+      .then(function(result) {
+        expect(result).to.deep.equal(response.result);
+      });
   });
 
 });

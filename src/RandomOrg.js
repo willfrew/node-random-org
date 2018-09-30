@@ -1,4 +1,3 @@
-var Promise = require('bluebird');
 var url = require('url');
 var makeRpcRequest = require('./rpc').makeRpcRequest;
 
@@ -51,23 +50,23 @@ RandomOrg.prototype._enrichParams = function(method, params) {
 }
 
 function createInvocation(methodName) {
-  return Promise.method(function(params) {
+  return function(params) {
     var requestOpts = {
       endpoint: this.endpoint,
       method: methodName,
       params: this._enrichParams(methodName, params)
-    }
+    };
     return this._makeRpcRequest(requestOpts)
-    .then(function (response) {
-      if (response.error) {
-        var error = new Error(response.error.message);
-        error.code = response.error.code;
-        throw error;
-      } else {
-        return response.result;
-      }
-    });
-  });
+      .then(function (response) {
+        if (response.error) {
+          var error = new Error(response.error.message);
+          error.code = response.error.code;
+          throw error;
+        } else {
+          return response.result;
+        }
+      });
+  };
 }
 
 module.exports = RandomOrg;
