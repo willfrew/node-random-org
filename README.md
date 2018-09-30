@@ -7,7 +7,7 @@ said random bits.
 The aim of this module is to provide a slightly more node-centric interface to
 their json-rpc api than existing offerings.
 
-Random.org's JSON-RPC api is in public beta until 31th May 2018.
+Random.org's JSON-RPC api is in public beta until 31st December 2018.
 You can request a beta key [here](https://api.random.org/api-keys/beta).
 Please be a nice api consumer and check out their
 [usage guidelines](https://api.random.org/guidelines) before using this module.
@@ -18,19 +18,22 @@ Install through npm:
 $ npm install random-org
 ```
 
-## Usage
-The `random-org` api is fully Promise-based.
+## Support
+The latest versions of all LTS versions of Node.js are supported.
 
+## Usage
 See the following high-level example for getting started:
 ```javascript
 var RandomOrg = require('random-org');
 
 var random = new RandomOrg({ apiKey: '12345-67890-api-key' });
 random.generateIntegers({ min: 1, max: 99, n: 2 })
-.then(function(result) {
-  console.log(result.random.data); // [55, 3]
-});
+  .then(function(result) {
+    console.log(result.random.data); // [55, 3]
+  });
 ```
+
+All methods return native Promises.
 
 ### Basic api methods
 The so-called 'basic' api methods are the ones to use if all you need is a few bits, of the random variety.
@@ -272,4 +275,4 @@ As such, I can't guarantee the availability or randomness of their service (or
 anything else for that matter!).
 
 ## License
-[MIT](./LICENSE). Fork it - I dare ya!
+[MIT](./LICENSE)
