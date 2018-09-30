@@ -4,7 +4,7 @@
   "description": "Truly random numbers via Random.org's json-rpc api",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/_mocha test/**/*.test.js"
+    "test": "_mocha test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,11 @@
     "url": "https://github.com/willfrew/node-random-org/issues"
   },
   "homepage": "https://github.com/willfrew/node-random-org#readme",
-  "dependencies": {
-    "bluebird": "^3.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4",
-    "nock": "^3.1.1",
-    "sinon": "^1.17.2"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.0",
+    "sinon": "^6.3.4"
   }
 }
