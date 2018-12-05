@@ -1,0 +1,13 @@
+tasks:
+  build:
+    image: node:8
+    command:
+      - npm
+    args:
+      - install
+  test:
+    image: node:8
+    command:
+      - npm
+    args:
+      - test
