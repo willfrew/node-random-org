@@ -11,3 +11,9 @@ tasks:
       - npm
     args:
       - test
+  echo:
+    image: node:8
+    command:
+      - echo
+    args:
+      - "hello world"
