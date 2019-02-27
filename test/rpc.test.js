@@ -87,11 +87,10 @@ describe('makeRpcRequest', function() {
   it('should send a valid json-rpc 2.0 request object', function() {
     return makeRpcRequest(requestOptions)
     .then(function() {
-      var body = requestBody;
-      expect(body.jsonrpc).to.equal('2.0');
-      expect(body.method).to.exist;
-      expect(body.params).to.exist;
-      expect(body.id).to.exist;
+      expect(requestBody.jsonrpc).to.equal('2.0');
+      expect(requestBody.method).to.exist;
+      expect(requestBody.params).to.exist;
+      expect(requestBody.id).to.exist;
     });
   });
 
@@ -99,8 +98,7 @@ describe('makeRpcRequest', function() {
   function() {
     return makeRpcRequest(requestOptions)
     .then(function() {
-      var body = requestBody;
-      expect(body.params).to.deep.equal(requestOptions.params);
+      expect(requestBody.params).to.deep.equal(requestOptions.params);
     });
   });
 
@@ -108,8 +106,7 @@ describe('makeRpcRequest', function() {
   function() {
     return makeRpcRequest(requestOptions)
     .then(function() {
-      var body = requestBody;
-      expect(body.method).to.equal(requestOptions.method);
+      expect(requestBody.method).to.equal(requestOptions.method);
     });
   });
 
