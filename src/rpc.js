@@ -29,7 +29,7 @@ var makeRpcRequest = function(options) {
       path: endpoint.path,
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json-rpc',
+        'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(postData, 'utf8')
       }
     };
