@@ -264,7 +264,7 @@ response = {
 
 ## Random.org docs
 For full api specs, see the official docs at
-[https://api.random.org/json-rpc/1/](https://api.random.org/json-rpc/1/).
+[https://api.random.org/json-rpc/2](https://api.random.org/json-rpc/2).
 
 Note that the differences between the official docs and those presented here are simply due to the abstraction provided by the module.
 

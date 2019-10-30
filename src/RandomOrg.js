@@ -7,7 +7,7 @@ function RandomOrg(opts) {
     throw new Error('options.apiKey is required & must be a String');
   }
 
-  this.endpoint = opts.endpoint || 'https://api.random.org/json-rpc/1/invoke';
+  this.endpoint = opts.endpoint || 'https://api.random.org/json-rpc/2/invoke';
   this.endpoint = url.parse(this.endpoint);
 
   // For testing.
