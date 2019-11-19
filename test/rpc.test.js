@@ -8,7 +8,7 @@ describe('makeRpcRequest', function() {
 
   var jsonRpcResponse;
   var server;
-  var endpoint = url.parse('https://api.example.com/json-rpc/1/invoke');
+  var endpoint = url.parse('https://api.example.com/json-rpc/2/invoke');
   var request; // The request made by makeRpcRequest
   var requestBody; // Data received by nock
   var requestOptions;
