@@ -19,7 +19,7 @@ $ npm install random-org
 ```
 
 ## Support
-The latest versions of Node.js 6, 8 and 10 are supported.
+The latest stable version and active LTS versions of Node.js are supported.
 
 ## Usage
 See the following high-level example for getting started:
