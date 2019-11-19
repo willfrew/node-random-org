@@ -7,8 +7,8 @@ said random bits.
 The aim of this module is to provide a slightly more node-centric interface to
 their json-rpc api than existing offerings.
 
-Random.org's JSON-RPC api is in public beta until 31st December 2018.
-You can request a beta key [here](https://api.random.org/api-keys/beta).
+To obtain an API key, please see their [pricing page](https://api.random.org/pricing) (includes free keys for developers at the time of writing).
+Or, if you already have an api key from the public beta, you can [migrate it](https://api.random.org/migration) to a production key.
 Please be a nice api consumer and check out their
 [usage guidelines](https://api.random.org/guidelines) before using this module.
 
