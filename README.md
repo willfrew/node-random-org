@@ -211,7 +211,7 @@ their authenticity can be verified against the random.org public key.
 All of the basic 'generation' api methods have a signed counterpart that take
 the exact same parameters along with an additional, _optional_ `userData` parameter (see below):
  - `generateIntegers` → `generateSignedIntegers`
- - `generateIntegers` → `generateSignedIntegerSequences`
+ - `generateIntegerSequences` → `generateSignedIntegerSequences`
  - `generateDecimalFractions` → `generateSignedDecimalFractions`
  - `generateGaussians` → `generateSignedGaussians`
  - `generateStrings` → `generateSignedStrings`
@@ -288,6 +288,7 @@ _Including_ `bitsUsed`, `bitsLeft`, `requestsLeft` and `advisoryDelay`.
 
 ```javascript
 params = {
+  /* Required */
   serialNumber: Number
     // The serial number of the response you wish to fetch again.
 }
