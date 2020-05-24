@@ -1,13 +1,16 @@
 const expect = require('chai').expect;
 const RandomOrg = require('../src/RandomOrg');
 
-const apiKey = process.env['RANDOM_ORG_API_KEY'];
+const API_KEY = process.env['RANDOM_ORG_API_KEY'];
+const TEST_TIMEOUT = 1 * 60 * 1000; // 1 minute in ms
 
 describe('RandomOrg', function() {
   let random;
 
+  this.timeout(TEST_TIMEOUT);
+
   beforeEach(function() {
-    random = new RandomOrg({ apiKey: apiKey });
+    random = new RandomOrg({ apiKey: API_KEY });
   });
 
   it('should be possible to call getUsage', async () => {
