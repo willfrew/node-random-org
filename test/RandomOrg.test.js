@@ -36,6 +36,7 @@ describe('RandomOrg', function() {
   it('should provide methods for all the basic api methods', function() {
     [
       'generateIntegers',
+      'generateIntegerSequences',
       'generateDecimalFractions',
       'generateGaussians',
       'generateStrings',
@@ -50,6 +51,7 @@ describe('RandomOrg', function() {
   it('should provide methods for all the signed api methods', function() {
     [
       'generateSignedIntegers',
+      'generateSignedIntegerSequences',
       'generateSignedDecimalFractions',
       'generateSignedGaussians',
       'generateSignedStrings',
