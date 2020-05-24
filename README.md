@@ -65,7 +65,7 @@ params = {
  ```
 
 #### `random.generateIntegerSequences(params : Object) : Promise`
-Generate some truly random integers.
+Generate some truly random sequences of integers.
 [_Response_](#basic-method-response-format)
 ```javascript
 params = {
