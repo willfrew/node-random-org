@@ -17,6 +17,7 @@ function RandomOrg(opts) {
 [
   // Basic api methods
   'generateIntegers',
+  'generateIntegerSequences',
   'generateDecimalFractions',
   'generateGaussians',
   'generateStrings',
@@ -25,12 +26,14 @@ function RandomOrg(opts) {
   'getUsage',
   // Signed api methods
   'generateSignedIntegers',
+  'generateSignedIntegerSequences',
   'generateSignedDecimalFractions',
   'generateSignedGaussians',
   'generateSignedStrings',
   'generateSignedUUIDs',
   'generateSignedBlobs',
-  'verifySignature'
+  'verifySignature',
+  'getResult',
 ].forEach(function(methodName) {
   RandomOrg.prototype[methodName] = createInvocation(methodName);
 });

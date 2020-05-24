@@ -1,4 +1,7 @@
 language: node_js
+script:
+  - npm test
+  - 'if [ "$RANDOM_ORG_API_KEY" != "" ]; then npm run test:integration; else echo "RANDOM_ORG_API_KEY not set, skipping integration tests"; fi'
 node_js:
   - "node"
   - "lts/*"

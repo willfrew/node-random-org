@@ -4,7 +4,8 @@
   "description": "Truly random numbers via Random.org's json-rpc api",
   "main": "index.js",
   "scripts": {
-    "test": "_mocha test/**/*.test.js"
+    "test": "_mocha test/**/*.test.js",
+    "test:integration": "_mocha test/**/*.integration.js"
   },
   "repository": {
     "type": "git",
