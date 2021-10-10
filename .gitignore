@@ -1,4 +1,5 @@
 node_modules/
+.log
 
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
@@ -6,3 +7,4 @@ node_modules/
 Session.vim
 .netrwhist
 *~
+

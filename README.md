@@ -13,7 +13,7 @@ Please be a nice api consumer and check out their
 [usage guidelines](https://api.random.org/guidelines) before using this module.
 
 In case of any discrepancies between this documentation and the official Random.org documentation, theirs is correct!
-Please open a ticket or PR if you notice any, though.
+Please open an issue or PR if you notice any, though.
 
 ## Installation
 Install through npm:
@@ -22,12 +22,14 @@ $ npm install random-org
 ```
 
 ## Support
-The latest stable version and active LTS versions of Node.js are supported.
+The [current, active & maintenance LTS versions](https://nodejs.org/en/about/releases/) of Node.js are supported.
 
 ## Usage
 See the following high-level example for getting started:
 ```javascript
-var RandomOrg = require('random-org');
+const RandomOrg = require('random-org');
+// or
+import RandomOrg from 'random-org';
 
 var random = new RandomOrg({ apiKey: '12345-67890-api-key' });
 random.generateIntegers({ min: 1, max: 99, n: 2 })
@@ -35,6 +37,8 @@ random.generateIntegers({ min: 1, max: 99, n: 2 })
     console.log(result.random.data); // [55, 3]
   });
 ```
+
+Typescript types are included.
 
 All methods return native Promises.
 
@@ -48,19 +52,19 @@ Generate some truly random integers.
 ```javascript
 params = {
   /* Required */
+  // The number of random integers to generate (valid values: [1-10000]).
   n: Number,
-    // The number of random integers to generate (valid values: [1-10000]).
+  // Lower bound for random integers (valid values: [-1e9 - 1e9] and `< max`).
   min: Number,
-    // Lower bound for random integers (valid values: [-1e9 - 1e9] and `< max`).
+  // Upper bound for random integers (valid values: [-1e9 - 1e9] and `> min`).
   max: Number,
-    // Upper bound for random integers (valid values: [-1e9 - 1e9] and `> min`).
 
   /* Optional */
+  // Whether or not the generated numbers can contain duplicates (default: true).
   replacement: Boolean,
-    // Whether or not the generated numbers can contain duplicates (default: true).
+  // The base of the generated numbers (default: 10; valid values: 2, 8, 10 or 16).
+  // If `base` is any value other than 10, the generated numbers will be returned as strings.
   base: Number
-    // The base of the generated numbers (default: 10; valid values: 2, 8, 10 or 16).
-    // If `base` is any value other than 10, the generated numbers will be returned as strings.
 }
  ```
 
@@ -70,23 +74,23 @@ Generate some truly random sequences of integers.
 ```javascript
 params = {
   /* Required */
+  // The number of random integer sequences to generate (valid values: [1-10000]).
   n: Number,
-    // The number of random integer sequences to generate (valid values: [1-10000]).
+  // The length of the sequences to generate (valid values: [1-10000]).
+  // Alternatively an array of `n` lengths if you need sequences of varying
+  // lengths (the sum of all lengths must be in the range: [1-10000]).
   length: Number | Array<Number>,
-    // The length of the sequences to generate (valid values: [1-10000]).
-    // Alternatively an array of `n` lengths if you need sequences of varying
-    // lengths (the sum of all lengths must be in the range: [1-10000]).
+  // Lower bound for random integers (valid values: [-1e9 - 1e9] and `< max`).
   min: Number,
-    // Lower bound for random integers (valid values: [-1e9 - 1e9] and `< max`).
+  // Upper bound for random integers (valid values: [-1e9 - 1e9] and `> min`).
   max: Number,
-    // Upper bound for random integers (valid values: [-1e9 - 1e9] and `> min`).
 
   /* Optional */
+  // Whether or not the generated numbers can contain duplicates (default: true).
   replacement: Boolean,
-    // Whether or not the generated numbers can contain duplicates (default: true).
+  // The base of the generated numbers (default: 10; valid values: 2, 8, 10 or 16).
+  // If `base` is any value other than 10, the generated numbers will be returned as strings.
   base: Number
-    // The base of the generated numbers (default: 10; valid values: 2, 8, 10 or 16).
-    // If `base` is any value other than 10, the generated numbers will be returned as strings.
 }
  ```
 
@@ -95,14 +99,14 @@ Generate some random real numbers between 0 and 1. [_Response_](#basic-method-re
 ```javascript
 params = {
   /* Required */
+  // The number of random reals to generate (valid values: [1-10000]).
   n: Number,
-    // The number of random reals to generate (valid values: [1-10000]).
+  // The number of decimal places to use (valid values: [1-20]).
   decimalPlaces: Number,
-    // The number of decimal places to use (valid values: [1-20]).
 
   /* Optional */
+  // Whether or not the generated numbers can contain duplicates (default: true).
   replacement: Boolean
-    // Whether or not the generated numbers can contain duplicates (default: true).
 }
 ```
 #### `random.generateGaussians(params : Object) : Promise`
@@ -114,14 +118,14 @@ contain duplicates.
 ```javascript
 params = {
   /* Required */
+  // The number of random numbers to generate (valid values: [1-10000]).
   n: Number,
-    // The number of random numbers to generate (valid values: [1-10000]).
+  // The mean of the distribution to pull numbers from (valid values: [-1e6 - 1e6]).
   mean: Number,
-    // The mean of the distribution to pull numbers from (valid values: [-1e6 - 1e6]).
+  // Said distribution's standard deviation (valid values [-1e6 - 1e6]).
   standardDeviation: Number,
-    // Said distribution's standard deviation (valid values [-1e6 - 1e6]).
+  // The number of significant digits for your requested random numbers (valid values: [2-20]).
   significantDigits: Number,
-    // The number of significant digits for your requested random numbers (valid values: [2-20]).
 }
 ```
 
@@ -130,17 +134,17 @@ Generate random strings of a given length, using a provided set of characters. [
 ```javascript
 params = {
   /* Required */
+  // The number of random strings to generate (valid values: [1-10000]).
   n: Number,
-    // The number of random strings to generate (valid values: [1-10000]).
+  // The length of each string you'd like generated.
   length: Number,
-    // The length of each string you'd like generated.
+  // The set of characters allowed to appear in the generated strings (maximum length: 80).
+  // Unicode characters are supported.
   characters: String,
-    // The set of characters allowed to appear in the generated strings (maximum length: 80).
-    // Unicode characters are supported.
 
   /* Optional */
+  // Whether or not the generated numbers can contain duplicates (default: true).
   replacement: Boolean
-    // Whether or not the generated numbers can contain duplicates (default: true).
 }
 ```
 
@@ -155,8 +159,8 @@ Although each UUID is drawn from a 128bit space, collisions are still possible
 ```javascript
 params = {
   /* Required */
+  // The number of UUIDs to generate (valid values: [1-1000]).
   n: Number
-    // The number of UUIDs to generate (valid values: [1-1000]).
 }
 ```
 
@@ -169,14 +173,14 @@ bits).
 ```javascript
 params = {
   /* Required */
+  // The number of blobs you'd like (valid values: [1-100]).
   n: Number,
-    // The number of blobs you'd like (valid values: [1-100]).
+  // The size of each blob, in bits (valid values: [1-1048576] and `size % 8 === 0`).
   size: Number,
-    // The size of each blob, in bits (valid values: [1-1048576] and `size % 8 === 0`).
 
   /* Optional */
+  // The format in which you'd like your blob (default: 'base64'; valid values: 'base64' or 'hex').
   format: String
-    // The format in which you'd like your blob (default: 'base64'; valid values: 'base64' or 'hex').
 }
 ```
 
@@ -187,20 +191,19 @@ format:
 ```javascript
 response = {
   random: {
-    /* Your requested bits, Sir. */
+    // Array containing your requested random numbers or strings.
     data: Array,
-      // Array containing your requested random numbers or strings.
+    // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
     completionTime: String
-      // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
   },
+  // The number of random bits generated in this request.
   bitsUsed: Number,
-    // The number of random bits generated in this request.
+  // An estimate of the number of remaining bits you can request.
   bitsLeft: Number,
-    // An estimate of the number of remaining bits you can request.
+  // An estimate of the number of remaining api calls you can make.
   requestsLeft: Number,
-    // An estimate of the number of remaining api calls you can make.
+  // The recommended number of milliseconds you should wait before making another request.
   advisoryDelay: Number
-    // The recommended number of milliseconds you should wait before making another request.
 }
 ```
 
@@ -225,38 +228,39 @@ The main difference between the basic and the signed methods is their response:
 ```javascript
 response = {
   random: {
+    // The name of the method you called.
     method: String,
-      // The name of the method you called.
+    // A base64-encoded SHA-512 hash of your api key.
+    // This allows you to provide this response to a third party without having to disclose your api key.
     hashedApiKey: String,
-      // A base64-encoded SHA-512 hash of your api key.
-      // This allows you to provide this response to a third party without having to disclose your api key.
-    /*
-      The parameters of your request will also be included here in the response.
-      E.g. for `generateSignedStrings`, you would receive:
-      n, length, characters & replacement
-     */
-    data: Array,
-      // Array containing your requested random numbers or strings.
-    completionTime: String,
-      // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
-    serialNumber: Number,
-      // The serial number of this response (unique to your api key's requests).
-    userData: Object | null,
-      // Copied from the original request's `userData` parameter or `null` if not specified.
-    license: Object,
-      // An object describing the license terms under which the random data in this response can be used.
 
+    /*
+     * The parameters of your request will also be included here in the response.
+     * E.g. for `generateSignedStrings`, you would receive additional properties:
+     * n, length, characters & replacement
+     */
+
+    // Array containing your requested random numbers or strings.
+    data: Array,
+    // The time that request was completed, in ISO 8601 format (parsable with new Date(isoString)).
+    completionTime: String,
+    // The serial number of this response (unique to your api key's requests).
+    serialNumber: Number,
+    // Copied from the original request's `userData` parameter or `null` if not specified.
+    userData: Object | null,
+    // An object describing the license terms under which the random data in this response can be used.
+    license: Object,
   },
+  // A base64-encoded signature of `response.random`, signed with Random.org's private key.
   signature: String,
-    // A base64-encoded signature of `response.random`, signed with Random.org's private key.
+  // The number of random bits generated in this request.
   bitsUsed: Number,
-    // The number of random bits generated in this request.
+  // An estimate of the number of remaining bits you can request.
   bitsLeft: Number,
-    // An estimate of the number of remaining bits you can request.
+  // An estimate of the number of remaining api calls you can make.
   requestsLeft: Number,
-    // An estimate of the number of remaining api calls you can make.
+  // The recommended number of milliseconds you should wait before making another request.
   advisoryDelay: Number
-    // The recommended number of milliseconds you should wait before making another request.
 }
 ```
 
@@ -267,15 +271,15 @@ convenience method api for verifying previously issued signed random numbers.
 ```javascript
 params = {
   /* Required */
+  // The original `response.random` object, received from one of the signed api calls.
   random: Object,
-    // The original `response.random` object, received from one of the signed api calls.
+  // The corresponding `response.signature` string from the same request.
   signature: String
-    // The corresponding `response.signature` string from the same request.
 }
 
 response = {
+  // True if the signed numbers were generated by Random.org, false if not.
   authenticity: Boolean
-    // True if the signed numbers were generated by Random.org, false if not.
 }
 ```
 
@@ -289,8 +293,8 @@ _Including_ `bitsUsed`, `bitsLeft`, `requestsLeft` and `advisoryDelay`.
 ```javascript
 params = {
   /* Required */
+  // The serial number of the response you wish to fetch again.
   serialNumber: Number
-    // The serial number of the response you wish to fetch again.
 }
 ```
 
@@ -299,19 +303,17 @@ params = {
 Get information about your account / api key.
 ```javascript
 response = {
+  // Your api key's current status. Either 'stopped', 'paused' or 'running'.
+  // In order request random bits, your api key must be 'running'.
   status: String,
-    // Your api key's current status. Either 'stopped', 'paused' or 'running'.
-    // In order request random bits, your api key must be 'running'.
+  // The timestamp at which your API key was created, in ISO 8601 format.
   creationTime: String,
-    // The timestamp at which your API key was created, in ISO 8601 format.
-  bitsUsed: Number,
-    // The number of random bits generated in this request.
+  // An estimate of the number of remaining bits you can request.
   bitsLeft: Number,
-    // An estimate of the number of remaining bits you can request.
+  // An estimate of the number of remaining api calls you can make.
   requestsLeft: Number,
-    // An estimate of the number of remaining api calls you can make.
+  // The recommended number of milliseconds you should wait before making another request.
   advisoryDelay: Number
-    // The recommended number of milliseconds you should wait before making another request.
 }
 ```
 

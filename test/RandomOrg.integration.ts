@@ -1,11 +1,11 @@
-const expect = require('chai').expect;
-const RandomOrg = require('../src/RandomOrg');
+import RandomOrg from '..';
+import { expect } from 'chai';
 
-const API_KEY = process.env['RANDOM_ORG_API_KEY'];
+const API_KEY = process.env['RANDOM_ORG_API_KEY']!;
 const TEST_TIMEOUT = 1 * 60 * 1000; // 1 minute in ms
 
 describe('RandomOrg', function() {
-  let random;
+  let random: RandomOrg;
 
   this.timeout(TEST_TIMEOUT);
 
