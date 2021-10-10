@@ -6,3 +6,5 @@ script:
 node_js:
   - "node"
   - "lts/*"
+  - "14"
+  - "12"
