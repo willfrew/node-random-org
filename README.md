@@ -1,4 +1,4 @@
-# `random-org` [![Build Status](https://travis-ci.org/willfrew/node-random-org.svg?branch=master)](https://travis-ci.org/willfrew/node-random-org)
+# `random-org` [![Build Status](https://app.travis-ci.com/willfrew/node-random-org.svg?branch=master)](https://travis-ci.com/github/willfrew/node-random-org)
 _A lightweight wrapper around the Random.org json-rpc api for Node.js_
 
 [Random.org](https://www.random.org) is a truly random number generation service.
