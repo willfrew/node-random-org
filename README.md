@@ -29,7 +29,7 @@ See the following high-level example for getting started:
 ```javascript
 const RandomOrg = require('random-org');
 // or
-import RandomOrg from 'random-org';
+import * as RandomOrg from 'random-org';
 
 var random = new RandomOrg({ apiKey: '12345-67890-api-key' });
 random.generateIntegers({ min: 1, max: 99, n: 2 })
