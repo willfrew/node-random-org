@@ -273,50 +273,54 @@ interface GetResultParams {
   serialNumber: number;
 }
 
-export default class RandomOrg {
-  constructor(opts: ConstructorOptions);
+declare module 'random-org' {
+  class RandomOrg {
+    constructor(opts: ConstructorOptions);
 
-  // API Key usage
-  getUsage(): Promise<GetUsageResponse>;
+    // API Key usage
+    getUsage(): Promise<GetUsageResponse>;
 
-  // Basic methods
-  generateIntegers(params: GenerateIntegersParams): Promise<RandomOrgRPCResponse<number[]>>;
+    // Basic methods
+    generateIntegers(params: GenerateIntegersParams): Promise<RandomOrgRPCResponse<number[]>>;
 
-  generateIntegerSequences(params: GenerateIntegerSequencesParams): Promise<RandomOrgRPCResponse<number[][]>>;
+    generateIntegerSequences(params: GenerateIntegerSequencesParams): Promise<RandomOrgRPCResponse<number[][]>>;
 
-  generateDecimalFractions(params: GenerateDecimalFractionsParams): Promise<RandomOrgRPCResponse<number[]>>;
+    generateDecimalFractions(params: GenerateDecimalFractionsParams): Promise<RandomOrgRPCResponse<number[]>>;
 
-  generateGaussians(params: GenerateGaussiansParams): Promise<RandomOrgRPCResponse<number[]>>;
+    generateGaussians(params: GenerateGaussiansParams): Promise<RandomOrgRPCResponse<number[]>>;
 
-  generateStrings(params: GenerateStringsParams): Promise<RandomOrgRPCResponse<string[]>>;
+    generateStrings(params: GenerateStringsParams): Promise<RandomOrgRPCResponse<string[]>>;
 
-  generateUUIDs(params: GenerateUUIDsParams): Promise<RandomOrgRPCResponse<string[]>>;
+    generateUUIDs(params: GenerateUUIDsParams): Promise<RandomOrgRPCResponse<string[]>>;
 
-  generateBlobs(params: GenerateBlobsParams): Promise<RandomOrgRPCResponse<string[]>>;
+    generateBlobs(params: GenerateBlobsParams): Promise<RandomOrgRPCResponse<string[]>>;
 
-  // Signed methods
-  generateSignedIntegers(params: WithUserData<GenerateIntegersParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateIntegersParams, number[]>>;
+    // Signed methods
+    generateSignedIntegers(params: WithUserData<GenerateIntegersParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateIntegersParams, number[]>>;
 
-  generateSignedIntegerSequences(params: WithUserData<GenerateIntegerSequencesParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateIntegerSequencesParams, number[][]>>;
+    generateSignedIntegerSequences(params: WithUserData<GenerateIntegerSequencesParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateIntegerSequencesParams, number[][]>>;
 
-  generateSignedDecimalFractions(params: WithUserData<GenerateDecimalFractionsParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateDecimalFractionsParams, number[]>>;
+    generateSignedDecimalFractions(params: WithUserData<GenerateDecimalFractionsParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateDecimalFractionsParams, number[]>>;
 
-  generateSignedGaussians(params: WithUserData<GenerateGaussiansParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateGaussiansParams, number[]>>;
+    generateSignedGaussians(params: WithUserData<GenerateGaussiansParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateGaussiansParams, number[]>>;
 
-  generateSignedStrings(params: WithUserData<GenerateStringsParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateStringsParams, string[]>>;
+    generateSignedStrings(params: WithUserData<GenerateStringsParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateStringsParams, string[]>>;
 
-  generateSignedUUIDs(params: WithUserData<GenerateUUIDsParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateUUIDsParams, string[]>>;
+    generateSignedUUIDs(params: WithUserData<GenerateUUIDsParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateUUIDsParams, string[]>>;
 
-  generateSignedBlobs(params: WithUserData<GenerateBlobsParams>):
-    Promise<SignedRandomOrgRPCResponse<GenerateBlobsParams, string[]>>;
+    generateSignedBlobs(params: WithUserData<GenerateBlobsParams>):
+      Promise<SignedRandomOrgRPCResponse<GenerateBlobsParams, string[]>>;
 
-  verifySignature(params: VerifySignatureParams): Promise<VerifySignatureResponse>;
+    verifySignature(params: VerifySignatureParams): Promise<VerifySignatureResponse>;
 
-  getResult<Params = {}, T = unknown>(params: GetResultParams): Promise<SignedRandomOrgRPCResponse<Params, T>>;
+    getResult<Params = {}, T = unknown>(params: GetResultParams): Promise<SignedRandomOrgRPCResponse<Params, T>>;
+  }
+  
+  export = RandomOrg;
 }
